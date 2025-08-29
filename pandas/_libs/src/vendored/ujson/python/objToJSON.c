@@ -347,7 +347,8 @@ static const char *PyDateTimeToIsoCallback(JSOBJ obj, JSONTypeContext *tc,
   }
 
   NPY_DATETIMEUNIT base = ((PyObjectEncoder *)tc->encoder)->datetimeUnit;
-  return PyDateTimeToIso(obj, base, len);
+  GET_TC(tc)->cStr = PyDateTimeToIso(obj, base, len);
+  return GET_TC(tc)->cStr;
 }
 
 static const char *PyTimeToJSON(JSOBJ _obj, JSONTypeContext *tc,
